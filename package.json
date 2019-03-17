@@ -1,0 +1,44 @@
+{
+    "name":            "secretary-secrets",
+    "version":         "1.0.0",
+    "description":     "Secrets Manager for NodeJS",
+    "main":            "dist/Secretary.js",
+    "scripts":         {
+        "build":          "tsc --project tsconfig.json",
+        "lint":           "tslint --config tslint.json --project tsconfig.json",
+        "prepublishOnly": "rm -r src && mv dist/* . && rmdir dist"
+    },
+    "author":          "Aaron Scherer <aequasi@gmail.com>",
+    "license":         "MIT",
+    "devDependencies": {
+        "@types/aws-sdk":    "^2.7.0",
+        "@types/lru-cache":  "^5.1.0",
+        "@types/node":       "^11.11.3",
+        "@types/node-vault": "^0.5.3",
+        "aws-sdk":           "^2.422.0",
+        "node-vault":        "^0.9.6",
+        "ts-node":           "^8.0.3",
+        "tslint":            "^5.14.0",
+        "typescript":        "^3.3.3333"
+    },
+    "dependencies":    {
+        "lru-cache": "^5.1.1"
+    },
+    "publishConfig":   {
+        "access": "public"
+    },
+    "release":         {
+        "plugins": [
+            "@semantic-release/commit-analyzer",
+            "@semantic-release/release-notes-generator",
+            [
+                "@semantic-release/changelog",
+                {
+                    "changelogFile": "CHANGELOG.md"
+                }
+            ],
+            "@semantic-release/git",
+            "@semantic-release/npm"
+        ]
+    }
+}
