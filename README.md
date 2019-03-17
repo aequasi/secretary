@@ -11,7 +11,11 @@ Currently supports:
 ## Installation 
 
 ```bash
-$ npm install secretary-secrets
+// If you want to use AWS Secrets Manager
+$ npm install secretary-secrets aws-sdk
+
+// If you want to use Hashicorp Vault
+$ npm install secretary-secrets node-vault
 ```
 
 ## Usage

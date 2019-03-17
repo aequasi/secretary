@@ -8,11 +8,6 @@ export default class Secretary {
         this.adapter = this.config.adapter;
     }
 
-    /**
-     *
-     * @param {string} path
-     * @param {string?} key
-     */
     public fetchSecret(path: string): Promise<PathResult>;
     public fetchSecret(path: string, key: string): Promise<string>;
     public fetchSecret(path: string, key?: string): Promise<Result> {
@@ -23,6 +18,7 @@ export default class Secretary {
         if (!/[A-Za-z0-9/]+/.test(path)) {
             throw new Error('Path must only contain alphanumeric characters or `/`');
         }
+
         if (!/^\/|\/$/.test(path)) {
             throw new Error('Path not start or end with a `/`');
         }
