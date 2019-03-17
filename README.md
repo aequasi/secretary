@@ -1,6 +1,6 @@
 # Secretary - NodeJS Secrets Management
 
-Secretary (etiology: Keeper of secrets) provides an abstract way to manage (currently only retrieve) secrets.
+Secretary (etymology: Keeper of secrets) provides an abstract way to manage (currently only retrieve) secrets.
 
 Currently supports:
 
