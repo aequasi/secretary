@@ -1,6 +1,6 @@
 {
     "name":            "secretary-secrets",
-    "version":         "1.0.0",
+    "version":         "0.0.1",
     "description":     "Secrets Manager for NodeJS",
     "main":            "dist/Secretary.js",
     "scripts":         {
