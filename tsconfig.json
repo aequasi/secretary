@@ -1,9 +1,9 @@
 {
     "compileOnSave":   false,
-    "include": [
+    "include":         [
         "src/**/*"
     ],
-    "exclude": [
+    "exclude":         [
         "node_modules",
         "**/*.spec.ts"
     ],
@@ -17,6 +17,7 @@
         "noUnusedParameters":           true,
         "removeComments":               false,
         "preserveConstEnums":           true,
+        "declaration":                  true,
         "sourceMap":                    true,
         "skipLibCheck":                 true,
         "baseUrl":                      ".",
