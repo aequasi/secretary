@@ -3,7 +3,7 @@ import 'source-map-support/register';
 import AdapterInterface, {PathResult, Result} from './Adapter/AdapterInterface';
 import Configuration from './Configuration';
 
-export class Secretary {
+export default class Secretary {
     private adapter: AdapterInterface;
 
     public constructor(private readonly config: Configuration) {
@@ -28,9 +28,3 @@ export class Secretary {
         return this.adapter.fetchSecret(path, key);
     }
 }
-
-export {AWSSecretsManagerAdapter, AWSSecretsManagerConfiguration} from './Adapter/AWS/SecretsManager';
-export {HashicorpVaultAdapter, HashicorpVaultConfiguration} from './Adapter/Hashicorp/Vault';
-export {GenericJSONFileAdapter, GenericJSONFileConfiguration} from './Adapter/Generic/JSONFile';
-export {AdapterInterface, AbstractAdapter} from './Adapter';
-export default Secretary;

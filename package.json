@@ -2,7 +2,8 @@
     "name": "secretary-secrets",
     "version": "0.0.1",
     "description": "Secrets Manager for NodeJS",
-    "main": "dist/Secretary.js",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "scripts": {
         "build": "tsc --project tsconfig.json",
         "lint": "tslint --config tslint.json --project tsconfig.json",
