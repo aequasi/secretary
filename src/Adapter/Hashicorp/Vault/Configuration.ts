@@ -9,5 +9,5 @@ export interface AppRoleOptions {
 
 export default interface Configuration extends VaultOptions, ConfigurationInterface {
     appRole?: AppRoleOptions;
-    secretPath?: string
+    secretPath?: string;
 }
