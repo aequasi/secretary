@@ -6,12 +6,12 @@ import Configuration from './Configuration';
 export default class Adapter extends AbstractAdapter {
     private readonly client: SecretsManager;
 
-    public constructor(protected readonly config: Configuration) {
+    public constructor(protected readonly config: Configuration = null) {
         super(config);
-        this.client = new SecretsManager({
+        this.client = new SecretsManager(config ? {
             endpoint: config.endpoint,
             region:   config.region,
-        });
+        } : null);
     }
 
     public async fetchSecretPath(path: string, _options?: OptionsInterface): Promise<PathResult> {

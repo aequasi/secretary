@@ -1,5 +1,4 @@
 import * as assert from 'assert';
-// @ts-ignore
 import {AWSSecretsManagerAdapter, GenericJSONFileAdapter, HashicorpVaultAdapter, Secretary} from '../src/Secretary';
 
 async function testGenericJSONFileAdapter() {
@@ -28,11 +27,7 @@ async function testHashicorpVaultAdapter() {
 
 async function testAWSSecretsManagerAdapter() {
     const manager = new Secretary({
-        adapter: new AWSSecretsManagerAdapter({
-            accessKeyId:     process.env.ACCESS_KEY_ID,
-            secretAccessKey: process.env.SECRET_ACCESS_KEY,
-            region:          'us-east-1',
-        }),
+        adapter: new AWSSecretsManagerAdapter(),
     });
 
     await runTests(manager);
