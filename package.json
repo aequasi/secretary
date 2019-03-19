@@ -7,7 +7,7 @@
         "build": "tsc --project tsconfig.json",
         "lint": "tslint --config tslint.json --project tsconfig.json",
         "prepublishOnly": "rm -r src && mv dist/* . && rmdir dist",
-        "test": "ts-node -r dotenv/config test/index.ts dotenv_config_path=test/.env"
+        "test": "ts-node test/index.ts"
     },
     "author": "Aaron Scherer <aequasi@gmail.com>",
     "license": "MIT",
@@ -20,8 +20,7 @@
         "@types/node-vault": "^0.5.3",
         "@types/source-map-support": "^0.5.0",
         "assert": "^1.4.1",
-        "aws-sdk": "^2.422.0",
-        "dotenv": "^7.0.0",
+        "aws-sdk": "^2.423.0",
         "node-vault": "^0.9.6",
         "ts-node": "^8.0.3",
         "tslint": "^5.14.0",
