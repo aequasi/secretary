@@ -1,4 +1,5 @@
-# Secretary - NodeJS Secrets Management
+# Secretary - NodeJS Secrets Management 
+[![Build Status](https://travis-ci.org/aequasi/secretary.svg?branch=master)](https://travis-ci.org/aequasi/secretary)
 
 Secretary (etymology: Keeper of secrets) provides an abstract way to manage (currently only retrieve) secrets.
 
