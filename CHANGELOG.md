@@ -1,3 +1,11 @@
+## [2.0.1](https://github.com/aequasi/secretary/compare/v2.0.0...v2.0.1) (2019-03-19)
+
+
+### Bug Fixes
+
+* **build:** Updating build ([c78ed2f](https://github.com/aequasi/secretary/commit/c78ed2f))
+* **build:** Updating build ([e11b088](https://github.com/aequasi/secretary/commit/e11b088))
+
 # [2.0.0](https://github.com/aequasi/secretary/compare/v1.0.0...v2.0.0) (2019-03-19)
 
 
