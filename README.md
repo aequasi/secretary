@@ -17,6 +17,9 @@ $ npm install secretary-secrets aws-sdk
 
 // If you want to use Hashicorp Vault
 $ npm install secretary-secrets node-vault
+
+// If you want to use a JSON file (no extra deps needed!)
+$ npm install secretary-secrets
 ```
 
 ## Usage
