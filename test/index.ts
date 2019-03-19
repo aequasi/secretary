@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import {AWSSecretsManagerAdapter, GenericJSONFileAdapter, HashicorpVaultAdapter, Secretary} from '../src/Secretary';
+import {AWSSecretsManagerAdapter, GenericJSONFileAdapter, HashicorpVaultAdapter, Secretary} from '../src/';
 
 async function testGenericJSONFileAdapter() {
     const manager = new Secretary({
