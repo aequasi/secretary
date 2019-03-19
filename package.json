@@ -6,23 +6,30 @@
     "scripts": {
         "build": "tsc --project tsconfig.json",
         "lint": "tslint --config tslint.json --project tsconfig.json",
-        "prepublishOnly": "rm -r src && mv dist/* . && rmdir dist"
+        "prepublishOnly": "rm -r src && mv dist/* . && rmdir dist",
+        "test": "ts-node -r dotenv/config test/index.ts dotenv_config_path=test/.env"
     },
     "author": "Aaron Scherer <aequasi@gmail.com>",
     "license": "MIT",
     "devDependencies": {
+        "@types/assert": "^1.4.2",
         "@types/aws-sdk": "^2.7.0",
+        "@types/dotenv": "^6.1.0",
         "@types/lru-cache": "^5.1.0",
         "@types/node": "^11.11.3",
         "@types/node-vault": "^0.5.3",
+        "@types/source-map-support": "^0.5.0",
+        "assert": "^1.4.1",
         "aws-sdk": "^2.422.0",
+        "dotenv": "^7.0.0",
         "node-vault": "^0.9.6",
         "ts-node": "^8.0.3",
         "tslint": "^5.14.0",
         "typescript": "^3.3.3333"
     },
     "dependencies": {
-        "lru-cache": "^5.1.1"
+        "lru-cache": "^5.1.1",
+        "source-map-support": "^0.5.11"
     },
     "publishConfig": {
         "access": "public"

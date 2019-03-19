@@ -5,7 +5,7 @@ export default abstract class AbstractAdapter implements AdapterInterface {
     protected cache?: LRUCache<string, any>;
 
     protected constructor(protected readonly config: ConfigurationInterface) {
-        if (this.shouldCache) {
+        if (this.shouldCache()) {
             const {enabled, ...cacheOptions} = this.config.cache;
             this.cache                       = new LRUCache<string, any>(cacheOptions);
         }

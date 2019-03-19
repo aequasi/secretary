@@ -1,7 +1,9 @@
+import 'source-map-support/register';
+
 import AdapterInterface, {PathResult, Result} from './Adapter/AdapterInterface';
 import Configuration from './Configuration';
 
-export default class Secretary {
+export class Secretary {
     private adapter: AdapterInterface;
 
     public constructor(private readonly config: Configuration) {
@@ -19,7 +21,7 @@ export default class Secretary {
             throw new Error('Path must only contain alphanumeric characters or `/`');
         }
 
-        if (!/^\/|\/$/.test(path)) {
+        if (/^\/|\/$/.test(path)) {
             throw new Error('Path not start or end with a `/`');
         }
 
@@ -31,3 +33,4 @@ export {AWSSecretsManagerAdapter, AWSSecretsManagerConfiguration} from './Adapte
 export {HashicorpVaultAdapter, HashicorpVaultConfiguration} from './Adapter/Hashicorp/Vault';
 export {GenericJSONFileAdapter, GenericJSONFileConfiguration} from './Adapter/Generic/JSONFile';
 export {AdapterInterface, AbstractAdapter} from './Adapter';
+export default Secretary;

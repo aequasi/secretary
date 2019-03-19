@@ -15,7 +15,15 @@ export default class Adapter extends AbstractAdapter {
             await this.loadSecrets();
         }
 
-        return this.resolve(path);
+        const resolved = this.resolve(path);
+        const response: PathResult = {};
+        for (const key of Object.keys(resolved)) {
+            if (typeof resolved[key] !== 'object') {
+                response[key] = resolved[key];
+            }
+        }
+
+        return response;
     }
 
     private async loadSecrets() {
@@ -25,13 +33,13 @@ export default class Adapter extends AbstractAdapter {
                     return reject(err);
                 }
 
-                this.secrets = buffer.toJSON();
+                this.secrets = JSON.parse(buffer.toString('utf8'));
                 resolve();
             });
         });
     }
 
-    private resolve(path: string) {
+    private resolve(path: string): any {
         const properties = Array.isArray(path) ? path : path.split('/');
 
         return properties.reduce((prev, curr) => prev && prev[curr], this.secrets);

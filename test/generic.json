@@ -1,0 +1,11 @@
+{
+    "test": {
+        "baz": "foo",
+        "foo": {
+            "bar":    "baz",
+            "foobar": {
+                "baz": "Hello World"
+            }
+        }
+    }
+}
