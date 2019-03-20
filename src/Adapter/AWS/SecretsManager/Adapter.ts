@@ -21,11 +21,17 @@ export default class Adapter extends AbstractAdapter {
     }
 
     public async fetchSecretPath(path: string, _options?: OptionsInterface): Promise<PathResult> {
-        const data = await this.client.getSecretValue({
-            SecretId:     path,
-            VersionId:    this.config.versionId,
-            VersionStage: this.config.versionStage,
-        }).promise();
+        const options: SecretsManager.GetSecretValueRequest = {
+            SecretId: path,
+        };
+        if (this.config.versionId) {
+            options.VersionId = this.config.versionId;
+        }
+        if (this.config.versionStage) {
+            options.VersionStage = this.config.versionStage;
+        }
+
+        const data = await this.client.getSecretValue(options).promise();
 
         return JSON.parse(data['SecretString']);
     }
