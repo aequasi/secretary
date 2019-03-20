@@ -1,3 +1,16 @@
+# [3.0.0](https://github.com/aequasi/secretary/compare/v2.0.3...v3.0.0) (2019-03-20)
+
+
+### Bug Fixes
+
+* **AWSSecretsManager:** Updating required configs ([ce6f951](https://github.com/aequasi/secretary/commit/ce6f951))
+* **test:** Fixing tests ([ca45ae6](https://github.com/aequasi/secretary/commit/ca45ae6))
+
+
+### BREAKING CHANGES
+
+* **AWSSecretsManager:** Config change
+
 ## [2.0.3](https://github.com/aequasi/secretary/compare/v2.0.2...v2.0.3) (2019-03-19)
 
 
