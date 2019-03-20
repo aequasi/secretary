@@ -1,3 +1,11 @@
+## [3.0.1](https://github.com/aequasi/secretary/compare/v3.0.0...v3.0.1) (2019-03-20)
+
+
+### Bug Fixes
+
+* **test:** Fixing endpoint ([644e680](https://github.com/aequasi/secretary/commit/644e680))
+* **test:** Fixing endpoint ([d1b889d](https://github.com/aequasi/secretary/commit/d1b889d))
+
 # [3.0.0](https://github.com/aequasi/secretary/compare/v2.0.3...v3.0.0) (2019-03-20)
 
 
