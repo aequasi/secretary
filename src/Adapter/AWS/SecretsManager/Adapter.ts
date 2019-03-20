@@ -9,11 +9,15 @@ export default class Adapter extends AbstractAdapter {
     public constructor(protected readonly config: Configuration) {
         super(config);
 
-        this.client = new SecretsManager({
-            endpoint:    config.endpoint,
+        const options: SecretsManager.ClientConfiguration = {
             region:      config.region,
             credentials: config.credentials,
-        });
+        };
+        if (config.endpoint) {
+            options.endpoint = config.endpoint;
+        }
+
+        this.client = new SecretsManager(options);
     }
 
     public async fetchSecretPath(path: string, _options?: OptionsInterface): Promise<PathResult> {
