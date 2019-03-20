@@ -1,5 +1,6 @@
 import {SecretsManager} from 'aws-sdk';
 import {SecretVersionIdType, SecretVersionStageType} from 'aws-sdk/clients/secretsmanager';
+import {CredentialsOptions} from 'aws-sdk/lib/credentials';
 import {ConfigurationInterface} from '../../';
 
 export default interface Configuration extends SecretsManager.Types.ClientConfiguration, ConfigurationInterface {
@@ -17,4 +18,7 @@ export default interface Configuration extends SecretsManager.Types.ClientConfig
      * the operation on the version with the VersionStage value of AWSCURRENT.
      */
     versionStage?: SecretVersionStageType;
+
+    credentials: CredentialsOptions;
+    region: string;
 }

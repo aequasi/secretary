@@ -6,11 +6,13 @@ import Configuration from './Configuration';
 export default class Adapter extends AbstractAdapter {
     private readonly client: SecretsManager;
 
-    public constructor(protected readonly config: Configuration = {}) {
+    public constructor(protected readonly config: Configuration) {
         super(config);
+
         this.client = new SecretsManager({
-            endpoint: config.endpoint,
-            region:   config.region,
+            endpoint:    config.endpoint,
+            region:      config.region,
+            credentials: config.credentials,
         });
     }
 
