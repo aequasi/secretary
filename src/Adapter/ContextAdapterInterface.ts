@@ -1,6 +1,8 @@
 import {PathResult, Result} from './';
 
-export type Context = { [key: string]: string };
+export interface Context {
+    [key: string]: string;
+}
 
 export default interface ContextAdapterInterface {
     /**

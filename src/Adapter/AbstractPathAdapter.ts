@@ -1,4 +1,4 @@
-import {AbstractAdapter, PathResult, Result, PathAdapterInterface} from './';
+import {AbstractAdapter, PathAdapterInterface, PathResult, Result} from './';
 
 export default abstract class AbstractPathAdapter extends AbstractAdapter implements PathAdapterInterface {
     public readonly pathRegex: RegExp = /^(?!\/)[A-Za-z\/_-]+(?<!\/)$/;
@@ -11,4 +11,3 @@ export default abstract class AbstractPathAdapter extends AbstractAdapter implem
 
     public abstract getPath(path: string): Promise<PathResult>;
 }
-

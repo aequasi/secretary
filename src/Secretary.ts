@@ -5,9 +5,6 @@ export default class Secretary<T extends AbstractPathAdapter | AbstractContextAd
     public constructor(private readonly adapter: T) {
     }
 
-    public async getSecret(key: string): Promise<Result>;
-    public async getSecret(key: string, path?: string): Promise<Result>;
-    public async getSecret(key: string, context?: Context): Promise<Result>;
     public async getSecret(key: string, pathOrContext?: string | Context): Promise<Result> {
         if (pathOrContext === null) {
             return this.getSecretByContext(key);
@@ -20,8 +17,6 @@ export default class Secretary<T extends AbstractPathAdapter | AbstractContextAd
         return this.getSecretByContext(key, pathOrContext as Context);
     }
 
-    public async getSecrets(path: string): Promise<PathResult>
-    public async getSecrets(context: Context): Promise<PathResult>
     public async getSecrets(pathOrContext: string | Context): Promise<PathResult> {
         if (typeof pathOrContext === 'string') {
             return this.getSecretsByPath(pathOrContext as string);
@@ -33,7 +28,7 @@ export default class Secretary<T extends AbstractPathAdapter | AbstractContextAd
     private async getSecretByPath(key: string, path: string): Promise<Result> {
         const adapter: AbstractPathAdapter = this.adapter as AbstractPathAdapter;
         if (!adapter.pathRegex.test(path)) {
-            throw new Error('Path is invalid. Must match regex: ' + adapter.pathRegex.toString())
+            throw new Error('Path is invalid. Must match regex: ' + adapter.pathRegex.toString());
         }
 
         return adapter.getSecret(key, path);
@@ -48,7 +43,7 @@ export default class Secretary<T extends AbstractPathAdapter | AbstractContextAd
     private async getSecretsByPath(path: string): Promise<PathResult> {
         const adapter: AbstractPathAdapter = this.adapter as AbstractPathAdapter;
         if (!adapter.pathRegex.test(path)) {
-            throw new Error('Path is invalid. Must match regex: ' + adapter.pathRegex.toString())
+            throw new Error('Path is invalid. Must match regex: ' + adapter.pathRegex.toString());
         }
 
         return adapter.getPath(path);

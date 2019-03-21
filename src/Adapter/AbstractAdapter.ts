@@ -3,7 +3,9 @@ import * as LRUCache from 'lru-cache';
 import {ConfigurationInterface} from './';
 
 export type Result = string;
-export type PathResult = { [key: string]: string };
+export interface PathResult {
+    [key: string]: string;
+}
 
 export default abstract class AbstractAdapter {
     protected cache?: LRUCache<string, any>;
