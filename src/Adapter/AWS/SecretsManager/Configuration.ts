@@ -1,9 +1,9 @@
 import {SecretsManager} from 'aws-sdk';
 import {SecretVersionIdType, SecretVersionStageType} from 'aws-sdk/clients/secretsmanager';
-import {CredentialsOptions} from 'aws-sdk/lib/credentials';
+
 import {ConfigurationInterface} from '../../';
 
-export default interface Configuration extends SecretsManager.Types.ClientConfiguration, ConfigurationInterface {
+export default interface Configuration extends ConfigurationInterface {
     /**
      * Specifies the unique identifier of the version of the secret that you want to retrieve. If you specify this
      * parameter then don't specify VersionStage. If you don't specify either a VersionStage or VersionId then the
@@ -19,6 +19,5 @@ export default interface Configuration extends SecretsManager.Types.ClientConfig
      */
     versionStage?: SecretVersionStageType;
 
-    credentials: CredentialsOptions;
-    region: string;
+    client: SecretsManager;
 }

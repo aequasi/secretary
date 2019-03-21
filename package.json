@@ -1,6 +1,5 @@
 {
     "name": "secretary-secrets",
-    "version": "0.0.1",
     "description": "Secrets Manager for NodeJS",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -18,11 +17,16 @@
         "@types/lru-cache": "^5.1.0",
         "@types/node": "^11.11.3",
         "@types/node-vault": "^0.5.3",
+        "@types/nodecredstash": "^2.0.0",
         "@types/source-map-support": "^0.5.0",
         "assert": "^1.4.1",
         "aws-sdk": "^2.423.0",
+        "aws-sdk-mock": "^4.3.1",
+        "dotenv": "^7.0.0",
         "node-vault": "^0.9.6",
+        "nodecredstash": "^2.0.2",
         "ts-node": "^8.0.3",
+        "ts-sinon": "^1.0.17",
         "tslint": "^5.14.0",
         "typescript": "^3.3.3333"
     },

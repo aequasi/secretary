@@ -1,32 +1,38 @@
 import {readFile} from 'fs';
 
-import {AbstractAdapter, OptionsInterface, PathResult} from '../../';
+import {AbstractPathAdapter, PathResult} from '../../';
 import Configuration from './Configuration';
 
-export default class Adapter extends AbstractAdapter {
-    private secrets: any;
+interface Secrets {
+    [key: string]: string | Secrets;
+}
+
+export default class Adapter extends AbstractPathAdapter {
+    private secrets: Secrets;
 
     public constructor(protected readonly config: Configuration) {
         super(config);
     }
 
-    public async fetchSecretPath(path: string, _options?: OptionsInterface): Promise<PathResult> {
-        if (!this.secrets) {
-            await this.loadSecrets();
-        }
-
-        const resolved = this.resolve(path);
-        const response: PathResult = {};
-        for (const key of Object.keys(resolved)) {
-            if (typeof resolved[key] !== 'object') {
-                response[key] = resolved[key];
+    public getPath(path: string): Promise<PathResult> {
+        return this.memoize<PathResult>(path, async () => {
+            if (!this.secrets) {
+                await this.loadSecrets();
             }
-        }
 
-        return response;
+            const resolved = this.resolve(path);
+            const response: PathResult = {};
+            for (const key of Object.keys(resolved)) {
+                if (typeof resolved[key] !== 'object') {
+                    response[key] = resolved[key];
+                }
+            }
+
+            return response;
+        });
     }
 
-    private async loadSecrets() {
+    private async loadSecrets(): Promise<void> {
         return new Promise((resolve, reject) => {
             readFile(this.config.file, (err, buffer) => {
                 if (err) {
@@ -42,6 +48,6 @@ export default class Adapter extends AbstractAdapter {
     private resolve(path: string): any {
         const properties = Array.isArray(path) ? path : path.split('/');
 
-        return properties.reduce((prev, curr) => prev && prev[curr], this.secrets);
+        return properties.reduce((prev, curr) => prev && prev[curr], this.secrets as any);
     }
 }

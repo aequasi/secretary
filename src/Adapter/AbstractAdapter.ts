@@ -1,7 +1,11 @@
 import * as LRUCache from 'lru-cache';
-import {AdapterInterface, ConfigurationInterface, OptionsInterface, PathResult, Result} from './';
 
-export default abstract class AbstractAdapter implements AdapterInterface {
+import {ConfigurationInterface} from './';
+
+export type Result = string;
+export type PathResult = { [key: string]: string };
+
+export default abstract class AbstractAdapter {
     protected cache?: LRUCache<string, any>;
 
     protected constructor(protected readonly config: ConfigurationInterface) {
@@ -11,23 +15,20 @@ export default abstract class AbstractAdapter implements AdapterInterface {
         }
     }
 
-    public async fetchSecret(path: string, key?: string, options?: OptionsInterface): Promise<Result> {
-        let cache: { [key: string]: string };
-        if (!this.shouldCache(options) || !this.cache.has(path)) {
-            cache = await this.fetchSecretPath(path, options);
-            if (this.shouldCache(options)) {
-                this.cache.set(path, cache);
-            }
-        } else {
-            cache = this.cache.get(path);
+    protected async memoize<T extends PathResult | Result>(key: string, callback: () => Promise<T>): Promise<T> {
+        if (this.shouldCache() && this.cache.has(key)) {
+            return this.cache.get(key);
         }
 
-        return key === undefined ? cache : cache[key];
+        const cachedValue = await callback();
+        if (this.shouldCache()) {
+            this.cache.set(key, cachedValue);
+        }
+
+        return cachedValue;
     }
 
-    public abstract fetchSecretPath(path: string, options?: OptionsInterface): Promise<PathResult>;
-
-    private shouldCache(options: OptionsInterface = {}): boolean {
-        return this.config.cache && this.config.cache.enabled && options.cache !== false;
+    private shouldCache(): boolean {
+        return this.config.cache && this.config.cache.enabled;
     }
 }

@@ -1,38 +1,30 @@
 import {SecretsManager} from 'aws-sdk';
 
-import {AbstractAdapter, OptionsInterface, PathResult} from '../../';
+import {AbstractPathAdapter, PathResult} from '../../';
 import Configuration from './Configuration';
 
-export default class Adapter extends AbstractAdapter {
+export default class Adapter extends AbstractPathAdapter {
     private readonly client: SecretsManager;
 
     public constructor(protected readonly config: Configuration) {
         super(config);
 
-        const options: SecretsManager.ClientConfiguration = {
-            region:      config.region,
-            credentials: config.credentials,
-        };
-        if (config.endpoint) {
-            options.endpoint = config.endpoint;
-        }
-
-        this.client = new SecretsManager(options);
+        this.client = config.client;
     }
 
-    public async fetchSecretPath(path: string, _options?: OptionsInterface): Promise<PathResult> {
-        const options: SecretsManager.GetSecretValueRequest = {
-            SecretId: path,
-        };
-        if (this.config.versionId) {
-            options.VersionId = this.config.versionId;
-        }
-        if (this.config.versionStage) {
-            options.VersionStage = this.config.versionStage;
-        }
+    public getPath(path: string): Promise<PathResult> {
+        return this.memoize<PathResult>(path, async () => {
+            const options: SecretsManager.GetSecretValueRequest = {SecretId: path};
+            if (this.config.versionId) {
+                options.VersionId = this.config.versionId;
+            }
+            if (this.config.versionStage) {
+                options.VersionStage = this.config.versionStage;
+            }
 
-        const data = await this.client.getSecretValue(options).promise();
+            const data = await this.client.getSecretValue(options).promise();
 
-        return JSON.parse(data['SecretString']);
+            return JSON.parse(data['SecretString']);
+        });
     }
 }
