@@ -26,17 +26,14 @@ $ npm install secretary-secrets
 
 ```typescript
 import Secretary, {AWSSecretsManagerAdapter} from 'secretary-secrets';
+import {SecretsManager} from 'aws-sdk';
 
 const manager = new Secretary({
-    adapter: new AWSSecretsManagerAdapter({
-        region: 'us-east-1',
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    })
+    adapter: new AWSSecretsManagerAdapter({client: new SecretsManager()})
 });
 
 async function main() {
-    const someSecret = await manager.fetchSecret('some/secret/path', 'redis_host');
+    const someSecret = await manager.getSecret('redis_host', 'some/secret/path');
     
     console.log(someSecret); // redis://localhost:6379
 }
