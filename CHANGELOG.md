@@ -1,3 +1,21 @@
+# [4.0.0](https://github.com/aequasi/secretary/compare/v3.0.1...v4.0.0) (2019-03-21)
+
+
+### Bug Fixes
+
+* **lint:** Lint fixes ([fee78a1](https://github.com/aequasi/secretary/commit/fee78a1))
+* **Merge:** github.com:aequasi/secretary ([23cab65](https://github.com/aequasi/secretary/commit/23cab65))
+
+
+### Features
+
+* **redesign:** Redesign ([5377a0f](https://github.com/aequasi/secretary/commit/5377a0f))
+
+
+### BREAKING CHANGES
+
+* **redesign:** Redesign.
+
 ## [3.0.1](https://github.com/aequasi/secretary/compare/v3.0.0...v3.0.1) (2019-03-20)
 
 
